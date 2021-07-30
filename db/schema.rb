@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_095511) do
+ActiveRecord::Schema.define(version: 2021_07_30_095928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2021_07_30_095511) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_assets_on_code"
     t.index ["institution_type", "institution_id"], name: "index_assets_on_institution"
+  end
+
+  create_table "entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.date "entry_date"
+    t.time "entry_time"
+    t.string "description"
+    t.string "reference_number"
+    t.string "institution_type", null: false
+    t.uuid "institution_id", null: false
+    t.string "recording_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["entry_date"], name: "index_entries_on_entry_date"
+    t.index ["entry_time"], name: "index_entries_on_entry_time"
+    t.index ["institution_type", "institution_id"], name: "index_entries_on_institution"
+    t.index ["recording_type"], name: "index_entries_on_recording_type"
   end
 
   create_table "equities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
