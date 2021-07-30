@@ -6,11 +6,12 @@ module Accounting
   module Amounts
     RSpec.describe Balancing do
       describe '.total' do
-        let(:debit_amount) { FactoryBot.create(:debit_amount, amount: 1_000) { include Accounting::Amounts::Balancing } }
-        let(:credit_amount) { FactoryBot.create(:credit_amount, amount: 1_000) { include Accounting::Amounts::Balancing } }
+        let(:entry) { FactoryBot.create(:entry_with_debit_and_credit) }
+        let(:debit_amount) { entry.debit_amounts.first }
+        let(:credit_amount) { entry.credit_amounts.first }
 
-        it { expect(debit_amount.class.total).to eq 1_000 }
-        it { expect(credit_amount.class.total).to eq 1_000 }
+        it { expect(debit_amount.class.total).to eql 10 }
+        it { expect(credit_amount.class.total).to eql 10 }
       end
     end
   end

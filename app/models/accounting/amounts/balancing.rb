@@ -11,6 +11,16 @@ module Accounting
         balancer(args).process(args.merge(amounts: self))
       end
 
+      def balance_for_new_record
+        balance = BigDecimal('0')
+        all.each do |amount_record|
+          if amount_record.amount && !amount_record.marked_for_destruction?
+            balance += amount_record.amount # unless amount_record.marked_for_destruction?
+          end
+        end
+        return balance
+      end
+
       private
 
       def balancer(args = {})
