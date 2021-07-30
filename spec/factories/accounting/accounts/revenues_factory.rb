@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :liability, class: Accounting::Accounts::Liability do
+  factory :revenue, class: Accounting::Accounts::Revenue do
     institution { nil }
-    name { "Liability #{SecureRandom.hex}" }
+    name { "Revenue #{SecureRandom.hex}" }
     code { SecureRandom.hex }
     contra { false }
   end
