@@ -6,6 +6,8 @@ module Accounting
   RSpec.describe Entry, type: :model do
     describe 'associations' do
       it { is_expected.to belong_to :institution }
+      it { is_expected.to have_many :debit_amounts }
+      it { is_expected.to have_many :credit_amounts }
     end
 
     describe 'validations' do
