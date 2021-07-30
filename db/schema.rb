@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_093914) do
+ActiveRecord::Schema.define(version: 2021_07_30_094806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "assets", force: :cascade do |t|
+  create_table "assets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "institution_type", null: false
-    t.bigint "institution_id", null: false
+    t.uuid "institution_id", null: false
     t.string "name"
     t.string "code"
     t.boolean "contra", default: false
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 2021_07_30_093914) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_assets_on_code"
     t.index ["institution_type", "institution_id"], name: "index_assets_on_institution"
+  end
+
+  create_table "equities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "institution_type", null: false
+    t.uuid "institution_id", null: false
+    t.string "name"
+    t.string "code"
+    t.boolean "contra"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_equities_on_code"
+    t.index ["institution_type", "institution_id"], name: "index_equities_on_institution"
   end
 
   create_table "liabilities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -36,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_093914) do
     t.boolean "contra"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_liabilities_on_code"
     t.index ["institution_type", "institution_id"], name: "index_liabilities_on_institution"
   end
 
