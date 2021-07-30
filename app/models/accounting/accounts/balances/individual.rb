@@ -11,11 +11,11 @@ module Accounting
           end
         end
 
-        def credits_balance(args={})
+        def credits_balance(args = {})
           credit_amounts.balance(args)
         end
 
-        def debits_balance(args={})
+        def debits_balance(args = {})
           debit_amounts.balance(args)
         end
       end
