@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :equity, class: Accounting::Accounts::Equity do
-    institution { nil }
+    association :institution, factory: :bank
     name { "Equity #{SecureRandom.hex}" }
     code { SecureRandom.hex }
     contra { false }
