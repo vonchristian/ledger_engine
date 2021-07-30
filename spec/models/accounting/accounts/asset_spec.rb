@@ -5,6 +5,10 @@ require 'rails_helper'
 module Accounting
   module Accounts
     RSpec.describe Asset, type: :model do
+      describe 'normal credit balance' do
+        it { expect(described_class.normal_credit_balance).to eql false }
+      end
+
       describe 'associations' do
         it { is_expected.to belong_to :institution }
       end
