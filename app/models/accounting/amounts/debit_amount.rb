@@ -3,6 +3,8 @@
 module Accounting
   module Amounts
     class DebitAmount < ApplicationRecord
+      extend Accounting::Amounts::Balancing
+
       monetize :amount_cents, as: :amount
 
       belongs_to :account, polymorphic: true
