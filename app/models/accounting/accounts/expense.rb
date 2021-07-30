@@ -4,6 +4,7 @@ module Accounting
   module Accounts
     class Expense < ApplicationRecord
       include Accounting::Accounts::Associations::AmountsAssociation
+      include Accounting::Accounts::Associations::EntriesAssociation
 
       belongs_to :institution, polymorphic: true
 
