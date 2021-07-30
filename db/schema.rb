@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_095928) do
+ActiveRecord::Schema.define(version: 2021_07_30_101207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 2021_07_30_095928) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_assets_on_code"
     t.index ["institution_type", "institution_id"], name: "index_assets_on_institution"
+  end
+
+  create_table "debit_amounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "account_type", null: false
+    t.uuid "account_id", null: false
+    t.bigint "amount_cents", null: false
+    t.uuid "entry_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_type", "account_id"], name: "index_debit_amounts_on_account"
+    t.index ["entry_id"], name: "index_debit_amounts_on_entry_id"
   end
 
   create_table "entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -92,4 +103,5 @@ ActiveRecord::Schema.define(version: 2021_07_30_095928) do
     t.index ["institution_type", "institution_id"], name: "index_revenues_on_institution"
   end
 
+  add_foreign_key "debit_amounts", "entries"
 end
