@@ -1,5 +1,5 @@
 module BusinessSavings
-  class DepositConfirmation
+  class CashDepositConfirmation
     include ActiveModel::Model
 
     attr_accessor :business_saving_id, :deposit_voucher_id
@@ -7,7 +7,7 @@ module BusinessSavings
     def process!
       if valid?
         ApplicationRecord.transaction do
-          create_deposit_entry
+          create_entry
         end
       end
     end
@@ -18,7 +18,7 @@ module BusinessSavings
 
     private
 
-    def create_deposit_entry
+    def create_entry
       entry = Accounting::Entry.new(
         reference_number: find_voucher.reference_number,
         entry_date: Date.current,

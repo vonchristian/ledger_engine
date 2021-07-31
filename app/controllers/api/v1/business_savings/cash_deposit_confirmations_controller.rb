@@ -1,10 +1,10 @@
 module API
   module V1
     module BusinessSavings
-      class DepositConfirmationsController < APIController
+      class CashDepositConfirmationsController < APIController
         def create
           @business_saving = Savings::AccountTypes::BusinessSaving.find(params[:business_saving_id])
-          @deposit = ::BusinessSavings::DepositConfirmation.new(deposit_params)
+          @deposit = ::BusinessSavings::CashDepositConfirmation.new(deposit_params)
           if @deposit.valid?
             @deposit.process!
             render json: @business_saving
@@ -16,7 +16,7 @@ module API
         private
 
         def deposit_params
-          params.require(:business_savings_deposit_confirmation)
+          params.require(:business_savings_cash_deposit_confirmation)
                 .permit(:deposit_voucher_id)
                 .merge!(business_saving_id: @business_saving.id)
         end

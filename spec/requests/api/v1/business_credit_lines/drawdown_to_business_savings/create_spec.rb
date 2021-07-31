@@ -19,7 +19,6 @@ describe 'POST /api/v1/business_credit_lines/:id/drawdown_to_business_savings', 
       post(url, params: params)
 
       expect(response).to have_http_status(:ok)
-      binding.pry
     end
   end
 end

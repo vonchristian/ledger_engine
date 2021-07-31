@@ -1,6 +1,6 @@
 # Ledger Engine
 
-## Proof of concept to implement double-entry accounting for:
+## Proof of concept to implement a ledger for:
 1. Tracking movement of money
 2. Computing balances of an account
 3. Auditing entries to an account
@@ -24,11 +24,11 @@ To allow corrections, validations, and previewing a transaction before it is fin
  - Open an account `/api/v1/business_saving_openings`
  - Get Balance `/api/v1/business_savings/:id/balance`
 
- - Deposits
-    - Initiation `/api/v1/business_savings/deposit_initiations`
-    - Preview `/api/v1/business_savings/deposit_vouchers/:id`
-    - Cancellation `/api/v1/business_savings/deposit_vouchers/:id`
-    - Confirmation `/api/v1/business_savings/:id/deposit_confirmations`
+ - Cash Deposits
+    - Initiation `/api/v1/business_savings/cash_deposit_initiations`
+    - Preview `/api/v1/business_savings/cash_deposit_vouchers/:id`
+    - Cancellation `/api/v1/business_savings/cash_deposit_vouchers/:id`
+    - Confirmation `/api/v1/business_savings/:id/cash_deposit_confirmations`
  -  Cash Withdrawals
     - Initiation `/api/v1/business_savings/:id/cash_withdrawal_initiations`
     - Preview `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`

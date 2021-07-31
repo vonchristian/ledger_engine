@@ -1,5 +1,5 @@
 module BusinessSavings
-  class DepositInitiation
+  class CashDepositInitiation
     include ActiveModel::Model
 
     attr_accessor :business_saving_id, :cash_account_id, :amount, :reference_number, :description
@@ -7,14 +7,14 @@ module BusinessSavings
     def process!
       if valid?
         ApplicationRecord.transaction do
-          create_deposit_voucher
+          create_voucher
         end
       end
     end
 
     private
 
-    def create_deposit_voucher
+    def create_voucher
       voucher = Voucher.new(
         reference_number: reference_number,
         description: 'Deposit',

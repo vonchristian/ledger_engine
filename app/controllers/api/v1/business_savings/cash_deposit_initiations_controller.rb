@@ -1,11 +1,11 @@
 module API
   module V1
     module BusinessSavings
-      class DepositInitiationsController < APIController
+      class CashDepositInitiationsController < APIController
         def create
           @reference_number = SecureRandom.hex
           @business_saving = Savings::AccountTypes::BusinessSaving.find(params[:business_saving_id])
-          @deposit = ::BusinessSavings::DepositInitiation.new(deposit_params)
+          @deposit = ::BusinessSavings::CashDepositInitiation.new(deposit_params)
           if @deposit.valid?
             @deposit.process!
             @voucher = Voucher.find_by(reference_number: @reference_number)
@@ -30,7 +30,7 @@ module API
         private
 
         def deposit_params
-          params.require(:business_savings_deposit_initiation)
+          params.require(:business_savings_cash_deposit_initiation)
                 .permit(:cash_account_id, :amount)
                 .merge!(business_saving_id: @business_saving.id, reference_number: @reference_number)
         end

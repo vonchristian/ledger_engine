@@ -8,9 +8,9 @@ Rails.application.routes.draw do
       resources :business_saving_openings, only: [:create]
       resources :business_savings, only: [:show] do
         resources :cash_withdrawal_initiations, only: [:create, :show, :destroy], module: :business_savings
-        resources :deposit_initiations, only: [:create, :show, :destroy], module: :business_savings
+        resources :cash_deposit_initiations, only: [:create, :show, :destroy], module: :business_savings
         resources :balance, only: [:index], module: :business_savings
-        resources :deposit_confirmations, only: [:create], module: :business_savings
+        resources :cash_deposit_confirmations, only: [:create], module: :business_savings
         resources :cash_withdrawal_confirmations, only: [:create], module: :business_savings
       end
 
