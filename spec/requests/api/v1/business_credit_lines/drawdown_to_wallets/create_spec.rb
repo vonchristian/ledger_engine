@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'POST /api/v1/business_credit_lines_drawdown_to_wallets', type: :request do
+describe 'POST /api/v1/business_credit_lines/:id/drawdown_to_wallets', type: :request do
   context 'with valid params' do
     let(:bank)          { FactoryBot.create(:bank, bank_name: 'First Circle Bank') }
     let(:cash_account)  { FactoryBot.create(:asset, name: 'Cash in Bank', institution: bank) }

@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
       resources :business_credit_lines, only: [:show] do
         resources :drawdown_to_wallets, only: [:create], module: :business_credit_lines
+        resources :drawdown_to_business_savings, only: [:create], module: :business_credit_lines
+
       end
     end
   end

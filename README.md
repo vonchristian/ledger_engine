@@ -14,7 +14,7 @@
 
 ### Business Credit Lines
  - Drawdown to wallets `/api/v1/business_credit_lines/:id/drawdown_to_wallets`
-
+  - Drawdown to business savings `/api/v1/business_credit_lines/:id/drawdown_to_business_savings`
 ### Business Savings
  - Open an account `/api/v1/business_saving_openings`
  - Deposits `/api/v1/business_savings/:id/deposits`
