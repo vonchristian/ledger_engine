@@ -2,7 +2,7 @@ module API
   module V1
     class BusinessSavingOpeningsController < APIController
       def create
-        @opening = BusinessSavings::Opening.new(opening_params)
+        @opening = ::BusinessSavings::Opening.new(opening_params)
         if @opening.valid?
           @opening.process!
           render json: @opening.find_business_saving

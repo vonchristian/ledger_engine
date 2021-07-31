@@ -8,10 +8,13 @@
 5. Generate income statement
 
 ## API Use Cases
- - Business Loan disbursements `/api/v1/business_loan_disbursements`
- - Business Loan payments `/api/v1/business_loans/:id/payments`
+### Business Loans
+ - Disbursements `/api/v1/business_loan_disbursements`
+ - Payments `/api/v1/business_loans/:id/payments`
 ### Business Savings
  - Open an account `/api/v1/business_saving_openings`
- - accept deposits `/api/v1/business_savings/:id/deposits`
+ - Deposits `/api/v1/business_savings/:id/deposits`
+ - Withdrawals `/api/v1/business_savings/:id/withdrawals`
+
 
 
