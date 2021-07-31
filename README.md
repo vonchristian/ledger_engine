@@ -7,6 +7,7 @@
 4. Generate balance sheet
 5. Generate income statement
 ## Transaction Workflow
+To allow corrections and previewing a transaction before it is finally recorded, We follow the following pattern:
 1. Initiation -> Create voucher
 2. Preview -> Show voucher
 3. Confirmation -> Create a journal entry
@@ -21,10 +22,12 @@
   - Drawdown to business savings `/api/v1/business_credit_lines/:id/drawdown_to_business_savings`
 ### Business Savings
  - Open an account `/api/v1/business_saving_openings`
- - Deposits `/api/v1/business_savings/:id/deposits`
+ - Deposits
     - Initiation `/api/v1/business_savings/deposit_initiations`
     - Preview `/api/v1/business_savings/deposit_vouchers/:id`
-    - Confirmation `/api/v1/business_savings/deposit_vouchers/:id/confirmations`
+    - Confirmation `/api/v1/business_savings/:id/deposit_confirmations`
+    - Cancellation `/api/v1/business_savings/deposit_vouchers/:id`
+
 
 
  - Withdrawals `/api/v1/business_savings/:id/withdrawals`
