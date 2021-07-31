@@ -15,6 +15,11 @@ module API
           end
         end
 
+        def show
+          @deposit_voucher = Voucher.find(params[:id])
+          render json: @deposit_voucher
+        end
+
         private
 
         def deposit_params
