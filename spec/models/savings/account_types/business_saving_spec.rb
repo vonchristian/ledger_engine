@@ -13,6 +13,10 @@ module Savings
         it { is_expected.to validate_presence_of :account_number }
         it { is_expected.to validate_presence_of :account_number }
       end
+
+      describe 'delegations' do
+        it { is_expected.to delegate_method(:balance).to(:depository_account) }
+      end
     end
   end
 end

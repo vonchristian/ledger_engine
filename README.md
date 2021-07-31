@@ -15,6 +15,9 @@
  - Open an account `/api/v1/business_saving_openings`
  - Deposits `/api/v1/business_savings/:id/deposits`
  - Withdrawals `/api/v1/business_savings/:id/withdrawals`
+ - Balance `/api/v1/business_savings/:id/balance`
+
+
 
 
 

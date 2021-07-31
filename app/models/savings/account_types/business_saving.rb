@@ -8,6 +8,8 @@ module Savings
       belongs_to :depository_account, class_name: 'Accounting::Accounts::Liability', foreign_key: 'depository_account_id'
 
       validates :account_number, presence: true, uniqueness: true
+
+      delegate :balance, to: :depository_account
     end
   end
 end
