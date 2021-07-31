@@ -20,6 +20,12 @@ module API
           render json: @voucher
         end
 
+        def destroy
+          @voucher = Voucher.find(params[:id])
+          @voucher.destroy
+          render json: 'Deleted successfully', status: 200
+        end
+
         private
 
         def cash_withdrawal_params
