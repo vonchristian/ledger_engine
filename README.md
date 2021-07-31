@@ -10,8 +10,8 @@
 To allow corrections, validations, and previewing a transaction before it is finally recorded, We follow the following pattern:
 1. Initiation -> Create voucher
 2. Preview -> Show voucher
-3. Confirmation -> Create a journal entry
-4. (Cancellation) -> Delete voucher
+3. (Cancellation) -> Delete voucher
+4. Confirmation -> Create a journal entry
 ## API Use Cases
 ### Business Loans
  - Disbursements `/api/v1/business_loan_disbursements`
@@ -27,13 +27,13 @@ To allow corrections, validations, and previewing a transaction before it is fin
  - Deposits
     - Initiation `/api/v1/business_savings/deposit_initiations`
     - Preview `/api/v1/business_savings/deposit_vouchers/:id`
-    - Confirmation `/api/v1/business_savings/:id/deposit_confirmations`
     - Cancellation `/api/v1/business_savings/deposit_vouchers/:id`
-   #### Withdrawals by Cash
-   - `/api/v1/business_savings/:id/withdrawals`
-   - Initiation `/api/v1/business_savings/:id/cash_withdrawal_initiations`
-   - Preview `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`
-   - Cancellation `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`
+    - Confirmation `/api/v1/business_savings/:id/deposit_confirmations`
+ -  Cash Withdrawals
+    - Initiation `/api/v1/business_savings/:id/cash_withdrawal_initiations`
+    - Preview `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`
+    - Cancellation `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`
+    - Confirmation `/api/v1/business_savings/:id/cash_withdrawals`
 
 
 
