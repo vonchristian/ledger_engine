@@ -33,7 +33,7 @@ To allow corrections, validations, and previewing a transaction before it is fin
     - Initiation `/api/v1/business_savings/:id/cash_withdrawal_initiations`
     - Preview `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`
     - Cancellation `/api/v1/business_savings/:id/cash_withdrawal_initiations/:id`
-    - Confirmation `/api/v1/business_savings/:id/cash_withdrawals`
+    - Confirmation `/api/v1/business_savings/:id/cash_withdrawal_confirmations`
 
 
 
