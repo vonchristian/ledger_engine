@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_030515) do
+ActiveRecord::Schema.define(version: 2021_07_31_041933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -32,6 +32,27 @@ ActiveRecord::Schema.define(version: 2021_07_31_030515) do
     t.string "bank_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "business_credit_lines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "business_type", null: false
+    t.uuid "business_id", null: false
+    t.string "account_number"
+    t.uuid "current_receivable_account_id", null: false
+    t.uuid "past_due_receivable_account_id", null: false
+    t.uuid "interest_revenue_account_id", null: false
+    t.uuid "penalty_revenue_account_id", null: false
+    t.string "institution_type", null: false
+    t.uuid "institution_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_number"], name: "index_business_credit_lines_on_account_number", unique: true
+    t.index ["business_type", "business_id"], name: "index_business_credit_lines_on_business"
+    t.index ["current_receivable_account_id"], name: "index_business_credit_lines_on_current_receivable_account_id"
+    t.index ["institution_type", "institution_id"], name: "index_business_credit_lines_on_institution"
+    t.index ["interest_revenue_account_id"], name: "index_business_credit_lines_on_interest_revenue_account_id"
+    t.index ["past_due_receivable_account_id"], name: "index_business_credit_lines_on_past_due_receivable_account_id"
+    t.index ["penalty_revenue_account_id"], name: "index_business_credit_lines_on_penalty_revenue_account_id"
   end
 
   create_table "business_loans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -186,6 +207,10 @@ ActiveRecord::Schema.define(version: 2021_07_31_030515) do
     t.index ["wallet_account_id"], name: "index_wallets_on_wallet_account_id"
   end
 
+  add_foreign_key "business_credit_lines", "assets", column: "current_receivable_account_id"
+  add_foreign_key "business_credit_lines", "assets", column: "past_due_receivable_account_id"
+  add_foreign_key "business_credit_lines", "revenues", column: "interest_revenue_account_id"
+  add_foreign_key "business_credit_lines", "revenues", column: "penalty_revenue_account_id"
   add_foreign_key "business_loans", "assets", column: "receivable_account_id"
   add_foreign_key "business_savings", "liabilities", column: "depository_account_id"
   add_foreign_key "business_wallets", "wallets"
