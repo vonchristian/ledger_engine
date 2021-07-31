@@ -6,5 +6,6 @@
 3. Auditing entries to an account
 
 ## API Use Cases
-
+ - Loan disbursements
+ - Loan payments
 ### Business to Business Payments
