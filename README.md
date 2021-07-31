@@ -23,4 +23,6 @@
 ### Wallets
  - Topup By Bank `/api/v1/wallets/:id/topup_by_banks`
  - Fund transfer to other wallets `/api/v1/wallets/:id/fund_transfer_to_wallets`
+ - Fund transfer to savings `/api/v1/wallets/:id/fund_transfer_to_business_savings`
+
 
