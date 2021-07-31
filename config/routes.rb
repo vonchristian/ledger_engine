@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :business_loan_disbursements, only: [:create], defaults: { format: :json }
-      resources :business_loans, only: [:show], defaults: { format: :json } do
+      resources :business_loan_disbursements, only: [:create]
+      resources :business_loans, only: [:show] do
         resources :payments, only: [:create], module: :business_loans
       end
+      resources :business_saving_openings, only: [:create]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

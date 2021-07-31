@@ -6,6 +6,8 @@
 3. Auditing entries to an account
 
 ## API Use Cases
- - Loan disbursements
- - Loan payments
-### Business to Business Payments
+ - Business Loan disbursements `/api/v1/business_loan_disbursements`
+ - Business Loan payments `/api/v1/business_loans/:id/payments`
+### Business Savings
+ - Open an account `/api/v1/business_saving_openings`
+
