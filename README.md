@@ -19,3 +19,6 @@
 
 ### Business Wallets
  - Open an account `/api/v1/business_wallet_openings`
+
+### Wallets
+ - Topup By Bank `/api/v1/wallets/:id/topup_by_banks`

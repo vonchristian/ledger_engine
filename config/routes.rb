@@ -10,7 +10,10 @@ Rails.application.routes.draw do
         resources :balance, only: [:index], module: :business_savings
         resources :deposits, only: [:create], module: :business_savings
         resources :withdrawals, only: [:create], module: :business_savings
+      end
 
+      resources :wallets, only: [:show] do
+        resources :topup_by_banks, only: [:create], module: :wallets
       end
     end
   end
