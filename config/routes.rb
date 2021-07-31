@@ -6,6 +6,9 @@ Rails.application.routes.draw do
         resources :payments, only: [:create], module: :business_loans
       end
       resources :business_saving_openings, only: [:create]
+      resources :business_savings, only: [:show] do
+        resources :deposits, only: [:create], module: :business_savings
+      end
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
