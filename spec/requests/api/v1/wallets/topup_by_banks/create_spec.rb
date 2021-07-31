@@ -9,7 +9,7 @@ describe 'POST /api/v1/wallets/:id/topup_by_banks', type: :request do
     let(:bank_account)    { FactoryBot.create(:asset, name: "Cash on Hand", institution: bank) }
     let(:wallet)          { FactoryBot.create(:wallet, institution: bank) }
 
-    it 'create a business wallet topup' do
+    it 'create a wallet topup' do
       url     = "/api/v1/wallets/#{wallet.id}/topup_by_banks"
       params  = { wallets_topup_by_bank: {
         reference_number: '123-456-789',

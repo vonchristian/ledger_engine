@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
       resources :wallets, only: [:show] do
         resources :topup_by_banks, only: [:create], module: :wallets
+        resources :fund_transfer_to_wallets, only: [:create], module: :wallets
+
       end
     end
   end
