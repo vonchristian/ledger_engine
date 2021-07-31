@@ -17,6 +17,10 @@ Rails.application.routes.draw do
         resources :fund_transfer_to_wallets, only: [:create], module: :wallets
         resources :fund_transfer_to_business_savings, only: [:create], module: :wallets
       end
+
+      resources :business_credit_lines, only: [:show] do
+        resources :drawdown_to_wallets, only: [:create], module: :business_credit_lines
+      end
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

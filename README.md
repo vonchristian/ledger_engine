@@ -11,6 +11,10 @@
 ### Business Loans
  - Disbursements `/api/v1/business_loan_disbursements`
  - Payments `/api/v1/business_loans/:id/payments`
+
+### Business Credit Lines
+ - Drawdown to wallets `/api/v1/business_credit_lines/:id/drawdown_to_wallets`
+
 ### Business Savings
  - Open an account `/api/v1/business_saving_openings`
  - Deposits `/api/v1/business_savings/:id/deposits`
