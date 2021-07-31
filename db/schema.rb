@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_024417) do
+ActiveRecord::Schema.define(version: 2021_07_31_030515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 2021_07_31_024417) do
     t.index ["business_type", "business_id"], name: "index_business_savings_on_business"
     t.index ["depository_account_id"], name: "index_business_savings_on_depository_account_id"
     t.index ["institution_type", "institution_id"], name: "index_business_savings_on_institution"
+  end
+
+  create_table "business_wallets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "business_type", null: false
+    t.uuid "business_id", null: false
+    t.uuid "wallet_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["business_type", "business_id"], name: "index_business_wallets_on_business"
+    t.index ["wallet_id"], name: "index_business_wallets_on_wallet_id"
   end
 
   create_table "corporations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -178,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_024417) do
 
   add_foreign_key "business_loans", "assets", column: "receivable_account_id"
   add_foreign_key "business_savings", "liabilities", column: "depository_account_id"
+  add_foreign_key "business_wallets", "wallets"
   add_foreign_key "credit_amounts", "entries"
   add_foreign_key "debit_amounts", "entries"
   add_foreign_key "wallets", "liabilities", column: "wallet_account_id"
