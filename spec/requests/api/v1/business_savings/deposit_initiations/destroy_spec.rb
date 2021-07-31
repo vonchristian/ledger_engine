@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'GET /api/v1/business_savings/:id/deposit_initiations/:id', type: :request do
+describe 'GET /api/v1/business_savings/:id/deposit_initiations/:id/', type: :request do
   context 'with valid params' do
     let(:bank)            { FactoryBot.create(:bank, bank_name: 'First Circle Bank') }
     let(:corporation)     { FactoryBot.create(:corporation) }
@@ -15,12 +15,11 @@ describe 'GET /api/v1/business_savings/:id/deposit_initiations/:id', type: :requ
       deposit_voucher.credit_amounts.build(amount: 1000, account: business_saving.depository_account)
       deposit_voucher.save!
 
-      url = "/api/v1/business_savings/#{business_saving.id}/deposit_initiations/#{deposit_voucher.id}"
+      url = "/api/v1/business_savings/#{business_saving.id}/deposit_initiations/#{deposit_voucher.id}/"
 
-      get(url)
+      delete(url)
 
-      expect(response).to have_http_status(:ok)
-
+      expect(Voucher.all.size).to eq 0
     end
   end
 end

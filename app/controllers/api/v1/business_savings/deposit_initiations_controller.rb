@@ -20,6 +20,13 @@ module API
           render json: @deposit_voucher
         end
 
+        def destroy
+          @deposit_voucher = Voucher.find(params[:id])
+          @deposit_voucher.destroy
+          render json: 'Deleted successfully', status: 200
+        end
+
+
         private
 
         def deposit_params
