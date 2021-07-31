@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
       resources :business_saving_openings, only: [:create]
       resources :business_savings, only: [:show] do
+        resources :deposit_initiations, only: [:create], module: :business_savings
         resources :balance, only: [:index], module: :business_savings
         resources :deposits, only: [:create], module: :business_savings
         resources :withdrawals, only: [:create], module: :business_savings

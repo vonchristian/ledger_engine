@@ -10,6 +10,7 @@
 1. Initiation -> Create voucher
 2. Preview -> Show voucher
 3. Confirmation -> Create a journal entry
+4. (Cancellation) -> Delete voucher
 ## API Use Cases
 ### Business Loans
  - Disbursements `/api/v1/business_loan_disbursements`
@@ -21,6 +22,11 @@
 ### Business Savings
  - Open an account `/api/v1/business_saving_openings`
  - Deposits `/api/v1/business_savings/:id/deposits`
+    - Initiation `/api/v1/business_savings/deposit_initiations`
+    - Preview `/api/v1/business_savings/deposit_vouchers/:id`
+    - Confirmation `/api/v1/business_savings/deposit_vouchers/:id/confirmations`
+
+
  - Withdrawals `/api/v1/business_savings/:id/withdrawals`
  - Balance `/api/v1/business_savings/:id/balance`
 
