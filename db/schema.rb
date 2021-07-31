@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_010311) do
+ActiveRecord::Schema.define(version: 2021_07_31_024417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -164,8 +164,21 @@ ActiveRecord::Schema.define(version: 2021_07_31_010311) do
     t.index ["institution_type", "institution_id"], name: "index_revenues_on_institution"
   end
 
+  create_table "wallets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "institution_type", null: false
+    t.uuid "institution_id", null: false
+    t.uuid "wallet_account_id", null: false
+    t.string "account_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_number"], name: "index_wallets_on_account_number", unique: true
+    t.index ["institution_type", "institution_id"], name: "index_wallets_on_institution"
+    t.index ["wallet_account_id"], name: "index_wallets_on_wallet_account_id"
+  end
+
   add_foreign_key "business_loans", "assets", column: "receivable_account_id"
   add_foreign_key "business_savings", "liabilities", column: "depository_account_id"
   add_foreign_key "credit_amounts", "entries"
   add_foreign_key "debit_amounts", "entries"
+  add_foreign_key "wallets", "liabilities", column: "wallet_account_id"
 end

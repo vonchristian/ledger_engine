@@ -17,7 +17,5 @@
  - Withdrawals `/api/v1/business_savings/:id/withdrawals`
  - Balance `/api/v1/business_savings/:id/balance`
 
-
-
-
-
+### Business Wallets
+ - Open an account `/api/v1/business_wallet_openings`
