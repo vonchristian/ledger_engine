@@ -6,7 +6,10 @@
 3. Auditing entries to an account
 4. Generate balance sheet
 5. Generate income statement
-
+## Transaction Workflow
+1. Initiation -> Create voucher
+2. Preview -> Show voucher
+3. Confirmation -> Create a journal entry
 ## API Use Cases
 ### Business Loans
  - Disbursements `/api/v1/business_loan_disbursements`

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_041933) do
+ActiveRecord::Schema.define(version: 2021_07_31_071840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -195,6 +195,40 @@ ActiveRecord::Schema.define(version: 2021_07_31_041933) do
     t.index ["institution_type", "institution_id"], name: "index_revenues_on_institution"
   end
 
+  create_table "voucher_credit_amounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "account_type", null: false
+    t.uuid "account_id", null: false
+    t.integer "amount_cents", null: false
+    t.uuid "voucher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_type", "account_id"], name: "index_voucher_credit_amounts_on_account"
+    t.index ["voucher_id"], name: "index_voucher_credit_amounts_on_voucher_id"
+  end
+
+  create_table "voucher_debit_amounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "account_type", null: false
+    t.uuid "account_id", null: false
+    t.bigint "amount_cents", null: false
+    t.uuid "voucher_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_type", "account_id"], name: "index_voucher_debit_amounts_on_account"
+    t.index ["voucher_id"], name: "index_voucher_debit_amounts_on_voucher_id"
+  end
+
+  create_table "vouchers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "reference_number", null: false
+    t.string "description", null: false
+    t.string "institution_type", null: false
+    t.uuid "institution_id", null: false
+    t.uuid "entry_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["entry_id"], name: "index_vouchers_on_entry_id"
+    t.index ["institution_type", "institution_id"], name: "index_vouchers_on_institution"
+  end
+
   create_table "wallets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "institution_type", null: false
     t.uuid "institution_id", null: false
@@ -216,5 +250,8 @@ ActiveRecord::Schema.define(version: 2021_07_31_041933) do
   add_foreign_key "business_wallets", "wallets"
   add_foreign_key "credit_amounts", "entries"
   add_foreign_key "debit_amounts", "entries"
+  add_foreign_key "voucher_credit_amounts", "vouchers"
+  add_foreign_key "voucher_debit_amounts", "vouchers"
+  add_foreign_key "vouchers", "entries"
   add_foreign_key "wallets", "liabilities", column: "wallet_account_id"
 end
