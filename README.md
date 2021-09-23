@@ -1,4 +1,4 @@
-# Ledger Engine
+# Ledger Engine API
 
 ## Proof of concept to implement a ledger for:
 1. Tracking movement of money
